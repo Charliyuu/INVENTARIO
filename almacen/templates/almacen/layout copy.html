@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <title>{% block titulo %} {% endblock %}</title>
+    {% load static %}
+    <link href="{% static 'almacen/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'almacen/css/londinium-theme.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'almacen/css/styles.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'almacen/css/icons.css' %}" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js" integrity="sha384-pzjw8f+ua7Kw1TIqj3czORAZ5LGb8o2eNV6pH9I3s5DImf43nMfw5mD9C8u2vFjh" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIqj3czORAZ5LGb8o2eNV6pH9I3s5DImf43nMfw5mD9C8u2vFjh" crossorigin="anonymous"></script>
+</head>
+    
+<body class="layout">
+    <div class="page-container subcuerpo" style="background-color:rgb(247, 250, 251);">
+        <div class="headerPrincipal"style="background-color:rgb(247, 250, 251);">
+            <img src="{% static 'almacen/img/LOGO.png' %}" style="width: 400px; height: 80px; text-align: center;" alt="Descripción">  
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:rgba(109, 109, 113, 0.78);">
+        <br>
+                        <a class="nav-link2" href="{% url 'alta' %}"><i class="fas fa-address-book"></i> ALTA DE ARTICULOS</a>
+                        <a class="nav-link2" href="{% url 'principal' %}"><i class="fas fa-address-book"></i> INICIO</a>
+                        <a class="nav-link2" href="{% url 'almacen' %}"><i class="fas fa-address-book"></i> ALMACEN</a> 
+                        <a class="nav-link2" href="{% url 'login' %}"><i class="fas fa-address-book"></i> cerrar</a> 
+                        
+                        {% if user.is_authenticated %}
+                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger" title="Cerrar sesión">
+                            <i class="fas fa-sign-out-alt"></i>
+                            </button>
+                        </form>
+                        {% endif %}
+                            
+                       
+
+        </nav>
+
+        <div class="page-content">
+            {% block Encabezado %}
+            {% endblock %}
+            {% block contenido_principal %}
+            {% endblock %}
+            {% block Contenido_almacen %}
+            {% endblock %}
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">ÁREA DE INVENTARIOS Y RESGUARDO PROVICIONAL</p>
+            </div>
+        </footer>
+    </div>
+
+   
+    
+</body>
+</html>
+

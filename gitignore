@@ -1,0 +1,22 @@
+# Entorno virtual
+venv/
+.env
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+
+# Archivos de Django
+*.sqlite3
+db.sqlite3
+*.log
+
+# Archivos del editor
+.vscode/
+.idea/
+
+# Archivos de migración
+**/migrations/
+
+# Archivos del sistema
+.DS_Store

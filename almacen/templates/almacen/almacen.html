@@ -1,0 +1,68 @@
+{% extends "almacen/layout.html" %}
+{% block titulo %} ALMACEN {% endblock %}
+{% block Encabezado %}
+<div class="page-header">
+  <div class="titulo">
+    <h1>ARTICULOS EN ALMACEN</h1>
+  </div>
+</div>
+<!-- Contenedor de Filtro + Botón PDF -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <!-- Filtro -->
+  <form method="GET" class="d-flex align-items-center">
+    <label for="resguardante" class="me-2 mb-0">Filtrar por Resguardante:</label>
+    <select name="resguardante" id="resguardante" class="form-control me-2" onchange="this.form.submit()">
+      <option value="">Todos</option>
+      {% for r in resguardantes %}
+        <option value="{{ r }}" {% if request.GET.resguardante == r %}selected{% endif %}>{{ r }}</option>
+      {% endfor %}
+    </select>
+  </form>
+  <!-- Botón PDF -->
+  <a href="{% url 'generar_pdf' %}?resguardante={{ request.GET.resguardante }}" class="btn btn-danger">
+    Generar PDF
+  </a>
+</div>
+{% endblock %}
+{% block Contenido_almacen %}
+<div class="container mt-3">
+  <table class="table table-bordered table-striped tabla mover-tabla">
+    <thead class="thead-dark">
+      <tr>
+        <th>Articulo</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Numero de Serie</th>
+        <th>Caracteristicas</th>
+        <th>Estado Fisico</th>
+        <th>Numero de Inventario</th>
+        <th>Resguardante</th>
+        <th>Area de Asignación</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for articulos in AT %}
+      <tr>
+        <td class="text-semibold">{{ articulos.articulo }}</td>
+        <td class="text-semibold">{{ articulos.marca }}</td>
+        <td class="text-semibold">{{ articulos.modelo }}</td>
+        <td class="text-semibold">{{ articulos.serie }}</td>
+        <td class="text-semibold">{{ articulos.caracteristicas }}</td>
+        <td class="text-semibold">{{ articulos.estado }}</td>
+        <td class="text-semibold">{{ articulos.n_inventario }}</td>
+        <td class="text-semibold">{{ articulos.resguardante }}</td>
+        <td class="text-semibold">{{ articulos.area }}</td>
+        <td>
+          <a href="{% url 'editar' articulos.id %}" class="btn btn-warning btn-sm">Editar</a>
+          <a href="{% url 'eliminar' articulos.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
+
+

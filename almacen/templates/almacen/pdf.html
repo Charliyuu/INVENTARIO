@@ -1,0 +1,119 @@
+<!-- almacen/templates/almacen/pdf.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 1cm;
+        }
+    
+        
+        body { font-family: Arial, sans-serif; font-size: 10px; }
+        h2, h3 { text-align: center; }
+        .encabezado, .firmas { width: 100%; margin-top: 10px; }
+        .firmas td { height: 60px; vertical-align: bottom; text-align: center; border-top: 1px solid #000; }
+
+        
+        .logo-superior {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 100px;
+        }
+    
+        .sello-inferior {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            width: 100px;
+        }
+
+        
+
+        table.articulos {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.articulos th, table.articulos td {
+            border: 1px solid #000;
+            padding: 4px;
+            text-align: left;
+        }
+        table.articulos th {
+            background-color: #eee;
+        }
+        .nota {
+            font-size: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <h2>COMISIÓN ESTATAL DE LOS DERECHOS HUMANOS DE MICHOACÁN</h2>
+    <h3>RESGUARDO DE MOBILIARIO Y EQUIPO PROVISIONAL</h3>
+
+    <table class="encabezado">
+        <tr>
+            <td><strong>RESGUARDANTE:</strong> {{ resguardante }}</td>
+            <td><strong>No. de resguardo:</strong> CEDH/UGR/2024/XXXX</td>
+        </tr>
+        <tr>
+            <td><strong>ADSCRIPCIÓN:</strong> {{ modelo }}</td>
+        </tr>
+    </table>
+
+    <p class="nota">
+        Para el desempeño de las actividades oficiales que tengo a mi cargo en esta Entidad, he recibido los artículos que se describen a continuación comprometiéndome a mantenerlos en óptimas condiciones.
+    </p>
+
+    <table class="articulos">
+        <thead>
+            <tr>
+                <th width="100">ARTÍCULO</th>
+                <th width="100">MARCA</th>
+                <th width="100">MODELO</th>
+                <th width="100">NO. SERIE</th>
+                <th width="100">CARACTERÍSTICAS</th>
+                <th width="100">ESTADO FÍSICO</th>
+                <th width="100">NO. DE INVENTARIO</th>
+                <th width="100">ÁREA DE ASIGNACIÓN</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for articulo in articulos %}
+            <tr>
+                <td>{{ articulo.articulo }}</td>
+                <td>{{ articulo.marca }}</td>
+                <td>{{ articulo.modelo }}</td>
+                <td>{{ articulo.serie }}</td>
+                <td>{{ articulo.caracteristicas }}</td>
+                <td>{{ articulo.estado }}</td>
+                <td>{{ articulo.n_inventario }}</td>
+                <td>{{ articulo.area }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <table class="firmas">
+        <tr>
+            <td>RECIBE</td>
+            <td>ELABORA</td>
+            <td>AUTORIZA</td>
+        </tr>
+        <tr>
+            <td>{{ resguardante }}</td>
+            <td>RODOLFO MONDRAGON VAZQUEZ  </td>
+            <td>MARCO ANTONIO TINOCO ALVAREZ </td>
+        </tr>
+    </table>
+
+</body>
+</html>

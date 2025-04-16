@@ -1,0 +1,17 @@
+{% extends "almacen/layout.html" %}
+{% block titulo %}Eliminar Articulo{% endblock %}
+
+{% block Contenido_almacen %}
+<div class="container mt-5" style="margin-left: -170px; ">
+    <h2>¿Estás seguro de que deseas eliminar este Articulo?</h2>
+    <p><strong>{{ articulo.articulo }}</strong></p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'almacen' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+
+ 
+
+
+{% endblock %}

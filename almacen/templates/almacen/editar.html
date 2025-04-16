@@ -1,0 +1,54 @@
+{% extends "almacen/layout.html" %}
+{% block titulo %} EDITAR ARTICULO {% endblock %}
+{% block Encabezado %}
+<div class="page-header">
+  <div class="titulo">
+    <h1>Editar el ARTÍCULO: {{ articulo.articulo }}</h1>
+  </div>
+</div>
+{% endblock %}
+{% block Contenido_almacen %}
+<div class="form-container" style="margin-left: 170px;">
+    <form class="form-horizontal" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ form.articulo.id_for_label }}">Artículo:</label>
+            {{ form.articulo }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.marca.id_for_label }}">Marca:</label>
+            {{ form.marca }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.modelo.id_for_label }}">Modelo:</label>
+            {{ form.modelo }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.serie.id_for_label }}">Número de serie:</label>
+            {{ form.serie }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.caracteristicas.id_for_label }}">Características:</label>
+            {{ form.caracteristicas }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.estado.id_for_label }}">Estado físico:</label>
+            {{ form.estado }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.n_inventario.id_for_label }}">Numero de Inventario:</label>
+            {{ form.n_inventario }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.reguardante.id_for_label }}">Resguardante:</label>
+            {{ form.resguardante }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.area.id_for_label }}">Área de Asignación:</label>
+            {{ form.area }}
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+{% endblock %}
