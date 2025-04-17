@@ -1,4 +1,4 @@
 pillow==10.3.0
 django==5.0.6
-jdango-ckeditor==6.7.1
+django-ckeditor==6.7.1
 pymysql==1.1.1
